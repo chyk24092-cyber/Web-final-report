@@ -1,9 +1,208 @@
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="./style.css" />
-  </head>
-  <body>
-    aaaaaaaaaaaa
-  </body>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premier League Archive 2000-2025</title>
+    <style>
+        /* ベースのデザイン */
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; background-color: #f3f3f3; color: #333; margin: 0; padding: 20px; }
+        h1 { text-align: center; color: #38003c; margin-bottom: 30px; }
+        .intro { text-align: center; margin-bottom: 40px; color: #666; }
+
+        /* グリッドレイアウト（カードを並べる） */
+        .archive-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* カードのデザイン */
+        .season-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+            border-top: 5px solid #38003c;
+        }
+        .season-card:hover { transform: translateY(-5px); }
+
+        /* カードヘッダー */
+        .card-header {
+            background-color: #38003c;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .season-year { font-size: 1.2em; font-weight: bold; }
+        .champion-badge { background-color: #00ff85; color: #38003c; padding: 5px 10px; border-radius: 20px; font-size: 0.8em; font-weight: bold; }
+
+        /* カードの中身 */
+        .card-body { padding: 20px; }
+        .data-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.9em; border-bottom: 1px dotted #eee; padding-bottom: 5px; }
+        .label { color: #888; font-size: 0.85em; }
+        .value { font-weight: bold; text-align: right; }
+
+        /* 詳細エリア（CL権やトリビア） */
+        .details {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-top: 1px solid #eee;
+            display: none; /* 最初は隠す */
+            font-size: 0.9em;
+        }
+        .details.open { display: block; animation: fadeIn 0.5s; }
+        
+        .trivia-box {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #fff8e1; /* 薄い黄色 */
+            border-left: 4px solid #ffc107;
+            border-radius: 4px;
+            font-size: 0.85em;
+            line-height: 1.4;
+        }
+
+        /* ボタン */
+        .toggle-btn {
+            width: 100%;
+            padding: 10px;
+            background: none;
+            border: none;
+            border-top: 1px solid #eee;
+            color: #38003c;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .toggle-btn:hover { background-color: #f0f0f0; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+</head>
+<body>
+
+    <h1>Premier League History (2000-2025)</h1>
+    <p class="intro">プレミアリーグ過去25年間の記録と記憶</p>
+
+    <div class="archive-container" id="archive-area">
+        </div>
+
+    <script>
+        // --- 1. データセット (ここに25年分を追加していきます) ---
+        // ※サンプルとして特徴的な数シーズン分を入れています
+        const historyData = [
+            {
+                season: "2000-01",
+                champion: "Man Utd",
+                mvp: "Patirick Veira (ARS)",
+                topScorer: "Hasselbaink (23)",
+                assistKing: "Beckham (12)",
+                bestGoal: "Shaun Bartlett (vs Leicester)",
+                clTeams: ["Man Utd", "Arsenal", "Liverpool"],
+                trivia: "マンチェスター・ユナイテッドが3連覇を達成。2位アーセナルに勝ち点10差をつける独走。"
+            },
+            {
+                season: "2003-04",
+                champion: "Arsenal",
+                mvp: "Thierry Henry (ARS)",
+                topScorer: "Henry (30)",
+                assistKing: "Izzet (14)", // 公式記録が曖昧な年は代表的な選手
+                bestGoal: "Dietmar Hamann (vs Portsmouth)", // BBC選出など
+                clTeams: ["Arsenal", "Chelsea", "Man Utd", "Liverpool"],
+                trivia: "「インビンシブルズ（無敵の艦隊）」。アーセナルが26勝12分0敗で、近代サッカー史に残る無敗優勝を達成。"
+            },
+            {
+                season: "2015-16",
+                champion: "Leicester",
+                mvp: "Jamie Vardy (LEI)",
+                topScorer: "Kane (25)",
+                assistKing: "Özil (19)",
+                bestGoal: "Dele Alli (vs Palace)",
+                clTeams: ["Leicester", "Arsenal", "Tottenham", "Man City"],
+                trivia: "「奇跡の優勝」。開幕前のオッズ5000倍だったレスター・シティが初優勝を果たし、スポーツ史上最大の番狂わせと言われた。"
+            },
+            {
+                season: "2023-24",
+                champion: "Man City",
+                mvp: "Phil Foden (MCI)",
+                topScorer: "Haaland (27)",
+                assistKing: "Watkins (13)",
+                bestGoal: "Garnacho (vs Everton)",
+                clTeams: ["Man City", "Arsenal", "Liverpool", "Aston Villa"],
+                trivia: "マンチェスター・シティが前人未到のリーグ4連覇を達成。クロップ監督のリバプールでのラストシーズンでもあった。"
+            },
+            // ... ここに他のシーズンのデータをコピーして追加していく
+            // 24-25シーズン（現在進行系）
+             {
+                season: "2024-25",
+                champion: "TBD", // 未定
+                mvp: "TBD",
+                topScorer: "Salah / Haaland (争い中)",
+                assistKing: "Saka (暫定)",
+                bestGoal: "Palmer (候補)",
+                clTeams: ["TBD"],
+                trivia: "現在進行中のシーズン。ペップ・グアルディオラの去就や、新興勢力の躍進が注目されている。"
+            }
+        ];
+
+        // --- 2. 描画ロジック ---
+        const container = document.getElementById('archive-area');
+
+        historyData.forEach((data, index) => {
+            // HTMLを作成
+            const html = `
+                <div class="season-card">
+                    <div class="card-header">
+                        <span class="season-year">${data.season}</span>
+                        <span class="champion-badge">🏆 ${data.champion}</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="data-row"><span class="label">得点王</span> <span class="value">${data.topScorer}</span></div>
+                        <div class="data-row"><span class="label">アシスト王</span> <span class="value">${data.assistKing}</span></div>
+                        <div class="data-row"><span class="label">MVP</span> <span class="value">${data.mvp}</span></div>
+                        <div class="data-row"><span class="label">Best Goal</span> <span class="value">${data.bestGoal}</span></div>
+                    </div>
+                    
+                    <button class="toggle-btn" onclick="toggleDetails(${index})">▼ 詳細・トリビアを見る</button>
+                    
+                    <div class="details" id="details-${index}">
+                        <div class="data-row">
+                            <span class="label">CL権獲得 (Top4)</span>
+                        </div>
+                        <div style="text-align:right; font-weight:bold; margin-bottom:10px; color:#38003c;">
+                            ${data.clTeams.join(', ')}
+                        </div>
+                        
+                        ${data.trivia ? `
+                        <div class="trivia-box">
+                            <strong>💡 その年のハイライト:</strong><br>
+                            ${data.trivia}
+                        </div>` : ''}
+                    </div>
+                </div>
+            `;
+            container.insertAdjacentHTML('beforeend', html);
+        });
+
+        // --- 3. 詳細開閉機能 ---
+        function toggleDetails(index) {
+            const detailDiv = document.getElementById(`details-${index}`);
+            detailDiv.classList.toggle('open');
+            
+            // ボタンの文字を変える（任意）
+            const btn = detailDiv.previousElementSibling;
+            if (detailDiv.classList.contains('open')) {
+                btn.innerText = "▲ 閉じる";
+            } else {
+                btn.innerText = "▼ 詳細・トリビアを見る";
+            }
+        }
+    </script>
+</body>
 </html>
