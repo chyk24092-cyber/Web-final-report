@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Season Stats | PL Fan Portal</title>
+    <style>
+        /* 基本設定 */
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; background-color: #f0f2f5; color: #333; }
+        header { background-color: #38003c; padding: 20px; color: white; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 24px; font-weight: bold; color: #00ff85; }
+        a { text-decoration: none; }
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        h1 { text-align: center; color: #38003c; margin-bottom: 40px; font-size: 2.5em; }
+
+        /* セクションの箱 */
+        .stats-box {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+        .section-title {
+            font-size: 1.5em;
+            color: #38003c;
+            border-bottom: 3px solid #00ff85;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        /* 順位表のデザイン（テーブル） */
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th { background-color: #38003c; color: white; padding: 12px; text-align: left; }
+        td { padding: 12px; border-bottom: 1px solid #eee; }
+        tr:nth-child(even) { background-color: #f9f9f9; } /* 縞模様 */
+        
+        /* 順位ごとの色分け */
+        .rank-cl { border-left: 5px solid #4285F4; } /* CL圏内（青） */
+        .rank-el { border-left: 5px solid #FBBC05; } /* EL圏内（黄） */
+        .rank-nomal { border-left: 5px solid #e8e7e4; }
+        .rank-demote { border-left: 5px solid #ef261c; }
+
+
+        /* 得点ランキング（棒グラフ風） */
+        .scorer-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .scorer-rank { font-size: 1.2em; font-weight: bold; width: 30px; color: #888; }
+        .scorer-info { flex-grow: 1; }
+        .scorer-name { font-weight: bold; display: block; }
+        .scorer-team { font-size: 0.8em; color: #666; }
+        .goal-bar-container { width: 200px; margin-left: 20px; display: flex; align-items: center; }
+        .goal-bar { height: 10px; background-color: #e90052; border-radius: 5px; margin-right: 10px; }
+        .goal-count { font-weight: bold; color: #e90052; }
+
+        /* スマホ対応 */
+        @media (max-width: 600px) {
+            .goal-bar-container { width: 100px; }
+            th, td { font-size: 0.9em; padding: 8px; }
+        }
+
+        /* 戻るボタン */
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            background-color: #38003c;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .back-btn:hover { background-color: #00ff85; color: #38003c; }
+
+    </style>
+</head>
+<body>
+                   <!-- 戻るボタン -->
+    <div style="background-color: #38003c; padding: 10px 20px;">
+        <a href="index.html" style="color: white; text-decoration: none; font-weight: bold;">
+            &larr; Back to Home
+        </a>
+    </div>
+
+    <div class="container">
+        <!-- このページの一番上のタイトル -->
+        <h1>Season Stats</h1>
+
+        <div class="stats-box">
+            <!-- 順位表のタイトル -->
+            <h2 class="section-title">Standings table</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 50px;">Pos</th>
+                        <th>Club</th>
+                        <th style="text-align: center;">Pl</th>
+                        <th style="text-align: center;">GD</th>
+                        <th style="text-align: center;">Pts</th>
+                    </tr>
+                </thead>
+                <!-- ここから~(ここまで)が順位表 -->
+                <tbody>
+                    <tr class="rank-cl">
+                        <td>1</td>
+                        <td><strong>Arsenal</strong></td>
+                        <td style="text-align: center;">19</td>
+                        <td style="text-align: center;">+25</td>
+                        <td style="text-align: center;"><strong>45</strong></td>
+                    </tr>
+                    <tr class="rank-cl">
+                        <td>2</td>
+                        <td><strong>Man City</strong></td>
+                        <td style="text-align: center;">19</td>
+                        <td style="text-align: center;">+26</td>
+                        <td style="text-align: center;"><strong>41</strong></td>
+                    </tr>
+                    <tr class="rank-cl">
+                        <td>3</td>
+                        <td><strong>Aston Villa</strong></td>
+                        <td style="text-align: center;">19</td>
+                        <td style="text-align: center;">+7</td>
+                        <td style="text-align: center;"><strong>39</strong></td>
+                    </tr>
+                    <tr class="rank-cl">
+                        <td>4</td>
+                        <td><strong>Liverpool</strong></td>
+                        <td style="text-align: center;">19</td>
+                        <td style="text-align: center;">+4</td>
+                        <td style="text-align: center;"><strong>33</strong></td>
+                    </tr>
+                    <tr class="rank-el">
+                        <td>5</td>
+                        <td><strong>Chelsea</strong></td>
+                        <td style="text-align: center;">19</td>
+                        <td style="text-align: center;">+11</td>
+                        <td style="text-align: center;"><strong>30</strong></td>
+                    </tr>
+                    <tr class="rank-nomal">
+                        <td>6</td>
+                        <td><strong>Man Utd</strong></td>
+                        <td style="text-align: center;">19</td>
+                        <td style="text-align: center;">+4</td>
+                        <td style="text-align: center;"><strong>30</strong></td>
+                    </tr>
+                    <tr class="rank-nomal">
+                        <td>7</td>
+                        <td><strong>Sunderland</strong></td>
+                        <td style="text-align: center;">19</td>
+                        <td style="text-align: center;">+2</td>
+                        <td style="text-align: center;"><strong>29</strong></td>
+                    </tr>
+                    <tr class="rank-nomal">
+                        <td>8</td>
+                        <td><strong>Everton</strong></td>
+                        <td style="text-align: center;">19</td>
+                        <td style="text-align: center;">0</td>
+                        <td style="text-align: center;"><strong>28</strong></td>
+                    </tr>
+                    <tr class="rank-nomal">
+                        <td>9</td>
+                        <td><strong>Brentford</strong></td>
+                        <td style="text-align: center;">19</td>
+                        <td style="text-align: center;">+2</td>
+                        <td style="text-align: center;"><strong>27</strong></td>
+                    </tr>
+                    <tr class="rank-nomal">
+                        <td>10</td>
+                        <td><strong>Crystal Palace</strong></td>
+                        <td style="text-align: center;">19</td>
+                        <td style="text-align: center;">+1</td>
+                        <td style="text-align: center;"><strong>27</strong></td>
+                    </tr>
+                    <tr class="rank-nomal">
+                        <td>11</td>
+                        <td><strong>Fulham</strong></td>
+                        <td style="text-align: center;">19</td>
+                        <td style="text-align: center;">-1</td>
+                        <td style="text-align: center;"><strong>27</strong></td>
+                    </tr>
+                    <tr class="rank-nomal">
+                        <td>12</td>
+                        <td><strong>Tottenham</strong></td>
+                        <td style="text-align: center;">19</td>
+                        <td style="text-align: center;">+4</td>
+                        <td style="text-align: center;"><strong>26</strong></td>
+                    </tr>
+                    <tr class="rank-nomal">
+                        <td>13</td>
+                        <td><strong>Newcastle</strong></td>
+                        <td style="text-align: center;">19</td>
+                        <td style="text-align: center;">+2</td>
+                        <td style="text-align: center;"><strong>26</strong></td>
+                    </tr>
+                    <tr class="rank-nomal">
+                        <td>14</td>
+                        <td><strong>Brighton</strong></td>
+                        <td style="text-align: center;">19</td>
+                        <td style="text-align: center;">+1</td>
+                        <td style="text-align: center;"><strong>25</strong></td>
+                    </tr>
+                    <tr class="rank-nomal">
+                        <td>15</td>
+                        <td><strong>Bournemouth</strong></td>
+                        <td style="text-align: center;">19</td>
+                        <td style="text-align: center;">-6</td>
+                        <td style="text-align: center;"><strong>23</strong></td>
+                    </tr>
+                    <tr class="rank-nomal">
+                        <td>16</td>
+                        <td><strong>Leeds United</strong></td>
+                        <td style="text-align: center;">19</td>
+                        <td style="text-align: center;">-7</td>
+                        <td style="text-align: center;"><strong>21</strong></td>
+                    </tr>
+                    <tr class="rank-nomal">
+                        <td>17</td>
+                        <td><strong>Nott'm Forest</strong></td>
+                        <td style="text-align: center;">19</td>
+                        <td style="text-align: center;">-12</td>
+                        <td style="text-align: center;"><strong>18</strong></td>
+                    </tr>
+                    <tr class="rank-demote">
+                        <td>18</td>
+                        <td><strong>West Ham</strong></td>
+                        <td style="text-align: center;">19</td>
+                        <td style="text-align: center;">-17</td>
+                        <td style="text-align: center;"><strong>14</strong></td>
+                    </tr>
+                    <tr class="rank-demote">
+                        <td>19</td>
+                        <td><strong>Burnley</strong></td>
+                        <td style="text-align: center;">19</td>
+                        <td style="text-align: center;">-17</td>
+                        <td style="text-align: center;"><strong>12</strong></td>
+                    </tr>
+                    <tr class="rank-demote">
+                        <td>20</td>
+                        <td><strong>Wolves</strong></td>
+                        <td style="text-align: center;">19</td>
+                        <td style="text-align: center;">-29</td>
+                        <td style="text-align: center;"><strong>3</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="font-size: 0.8em; color: #888; text-align: right; margin-top: 10px;">
+                ※2026年1月3日18時時点のデータです。
+            </p>
+        </div>
+
+        <div class="stats-box">
+            <!-- 得点ランキングのタイトル -->
+            <h2 class="section-title">Top Scorers</h2>
+            <!-- 各プレイヤーの上位者を書く -->
+            <div class="scorer-item">
+                <div class="scorer-rank">1</div>
+                <div class="scorer-info">
+                    <span class="scorer-name">Erling Haaland</span>
+                    <span class="scorer-team">Man City</span>
+                </div>
+                <div class="goal-bar-container">
+                    <div class="goal-bar" style="width: 100%;"></div>
+                    <span class="goal-count">19</span>
+                </div>
+            </div>
+
+            <div class="scorer-item">
+                <div class="scorer-rank">2</div>
+                <div class="scorer-info">
+                    <span class="scorer-name">Igor Thiago</span>
+                    <span class="scorer-team">Brentford</span>
+                </div>
+                <div class="goal-bar-container">
+                    <div class="goal-bar" style="width: 70%;"></div>
+                    <span class="goal-count">11</span>
+                </div>
+            </div>
+
+            <div class="scorer-item">
+                <div class="scorer-rank">3</div>
+                <div class="scorer-info">
+                    <span class="scorer-name">Antoine Semenyo</span>
+                    <span class="scorer-team">Bournemouth</span>
+                </div>
+                <div class="goal-bar-container">
+                    <div class="goal-bar" style="width: 60%;"></div>
+                    <span class="goal-count">9</span>
+                </div>
+            </div>
+
+            <div class="scorer-item">
+                <div class="scorer-rank">4</div>
+                <div class="scorer-info">
+                    <span class="scorer-name">Danny Welbeck</span>
+                    <span class="scorer-team">Brighton</span>
+                </div>
+                <div class="goal-bar-container">
+                    <div class="goal-bar" style="width: 55%;"></div>
+                    <span class="goal-count">8</span>
+                </div>
+            </div>
+
+            <div class="scorer-item">
+                <div class="scorer-rank">4</div>
+                <div class="scorer-info">
+                    <span class="scorer-name">Dominic Calvert-Lewin</span>
+                    <span class="scorer-team">Leeds United</span>
+                </div>
+                <div class="goal-bar-container">
+                    <div class="goal-bar" style="width: 55%;"></div>
+                    <span class="goal-count">8</span>
+                </div>
+            </div>
+
+            <div class="scorer-item">
+                <div class="scorer-rank">4</div>
+                <div class="scorer-info">
+                    <span class="scorer-name">Jean-Philippe Mateta</span>
+                    <span class="scorer-team">Crystal Palace</span>
+                </div>
+                <div class="goal-bar-container">
+                    <div class="goal-bar" style="width: 55%;"></div>
+                    <span class="goal-count">8</span>
+                </div>
+            </div>
+
+        </div>
+
+        <div style="text-align: center;">
+            <a href="index.html" class="back-btn">&larr; Back to Home</a>
+        </div>
+    </div>
+
+</body>
+</html>

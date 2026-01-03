@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Japanese Players | PL Fan Portal</title>
+    <style>
+        /* 基本デザイン（トップページと共通） */
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; background-color: #f0f2f5; color: #333; }
+        header { background-color: #38003c; padding: 20px; color: white; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 24px; font-weight: bold; color: #00ff85; }
+        a { text-decoration: none; }
+
+        /* メインエリア */
+        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+        
+        h1 { 
+            text-align: center; 
+            color: #0055ff; /* サムライブルーっぽい青 */
+            margin-bottom: 40px;
+            font-size: 2.5em;
+        }
+
+        /* 選手カードのグリッド */
+        .player-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        /* 選手カード個別のデザイン */
+        .player-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            border-top: 5px solid #0055ff; /* 青いライン */
+        }
+        .player-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* 写真エリア（今はグレーの箱ですが、将来画像にできます） */
+        .player-photo {
+            height: 200px;
+            background-color: #ddd; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            color: #888;
+        }
+
+        .player-info { padding: 20px; }
+        .player-name { font-size: 1.5em; font-weight: bold; margin: 0 0 5px 0; color: #38003c; }
+        .player-team { color: #666; font-weight: bold; margin-bottom: 15px; display: block; }
+        .player-desc { font-size: 0.95em; line-height: 1.6; color: #444; }
+
+        /* 戻るボタン */
+        .back-btn {
+            display: inline-block;
+            margin-top: 50px;
+            background-color: #38003c;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .back-btn:hover { background-color: #00ff85; color: #38003c; }
+
+    </style>
+</head>
+<body>
+               <!-- 戻るボタン -->
+    <div style="background-color: #38003c; padding: 10px 20px;">
+        <a href="index.html" style="color: white; text-decoration: none; font-weight: bold;">
+            &larr; Back to Home
+        </a>
+    </div>
+
+    <div class="container">
+        <h1>Japanese Players</h1>
+        <p style="text-align: center; margin-bottom: 40px;">
+            プレミアリーグで戦う日本人選手たち。
+        </p>
+
+        <div class="player-grid">
+
+            <div class="player-card">
+                <div class="player-photo">🏃💨</div>
+                <div class="player-info">
+                    <h2 class="player-name">Kaoru Mitoma</h2>
+                    <span class="player-team">Brighton & Hove Albion</span>
+                    <span class="Affiliation-season">2021~</span>
+                    <p class="player-desc">
+                    ドリブルだけでなくパスやオフザボールも得意とするブライトンの攻撃の核。課題だった決定力も昨シーズン2桁ゴールをしたことで克服。「三苫の1mm」で劇的アシストをしたことでも有名である。
+                    </p>
+                </div>
+            </div>
+
+            <div class="player-card">
+                <div class="player-photo">🛡️</div>
+                <div class="player-info">
+                    <h2 class="player-name">Wataru Endo</h2>
+                    <span class="player-team">Liverpool FC</span>
+                    <span class="Affiliation-season">2023~</span>
+                    <p class="player-desc">
+                        「デュエル王」の異名を持つ守備的MF。監督に求められた役割を遂行するため、CBやSBにコンバートすることもある。日本代表ではキャプテンも務めているリーダー的存在。
+                    </p>
+                </div>
+            </div>
+
+            <div class="player-card">
+                <div class="player-photo">🧱</div>
+                <div class="player-info">
+                    <h2 class="player-name">Ao Tanaka</h2>
+                    <span class="player-team">Leeds United</span>
+                    <span class="Affiliation-season">2024~</span>
+                    <p class="player-desc">
+                        豊富な運動量と極めて高い戦術眼で中盤を支配する「リーズの心臓」。「三笘の1mm」から生まれた決勝弾のスコアラーは彼であり、幼馴染である三笘の折り返しを田中が沈めるという、ロマンとドラマが詰まったゴールであった。
+                    </p>
+                </div>
+            </div>
+
+            <div class="player-card">
+                <div class="player-photo">🦅</div>
+                <div class="player-info">
+                    <h2 class="player-name">Daichi Kamada</h2>
+                    <span class="player-team">Crystal Palace</span>
+                    <span class="Affiliation-season">2024~</span>
+                    <p class="player-desc">
+                        恩師グラスナー監督のラブコールに応じ、プレミアリーグへ参戦。高い得点力とチャンスメイク能力を併せ持つ攻撃的MF。現在のパレスでは必要不可欠な存在となっている。
+                    </p>
+                </div>
+            </div>
+
+                        <div class="player-card">
+                <div class="player-photo">🧱</div>
+                <div class="player-info">
+                    <h2 class="player-name">Kouta Takai</h2>
+                    <span class="player-team">Tottenham Hotspur</span>
+                    <span class="Affiliation-season">2025~</span>
+                    <p class="player-desc">
+                       192cmの圧倒的な高さと、足元の技術を兼ね備えた現代型CB。その才能は日本のみならず世界からも注目され、弱冠20歳にしてビッグクラブ・トッテナムへの移籍を果たした。
+                    </p>
+                </div>
+            </div>
+
+
+
+        </div>
+
+        <div style="text-align: center;">
+            <a href="index.html" class="back-btn">&larr; Back to Home</a>
+        </div>
+    </div>
+
+</body>
+</html>
