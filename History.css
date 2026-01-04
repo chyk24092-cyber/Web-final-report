@@ -1,0 +1,173 @@
+/* History.css */
+
+/* ベースのデザイン */
+.history-page {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  background-color: #f3f3f3;
+  color: #333;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.history-title {
+  text-align: center;
+  color: #38003c;
+  margin-bottom: 30px;
+}
+
+.intro {
+  text-align: center;
+  margin-bottom: 40px;
+  color: #666;
+}
+
+/* ナビゲーション（戻るボタンエリア） */
+.nav-header {
+  background-color: #38003c;
+  padding: 10px 20px;
+  margin: -20px -20px 20px -20px; /* bodyのpaddingを相殺 */
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* グリッドレイアウト */
+.archive-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* カードのデザイン */
+.season-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  border-top: 5px solid #38003c;
+}
+
+.season-card:hover {
+  transform: translateY(-5px);
+}
+
+/* カードヘッダー */
+.card-header {
+  background-color: #38003c;
+  color: white;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.season-year {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.champion-badge {
+  background-color: #00ff85;
+  color: #38003c;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.8em;
+  font-weight: bold;
+}
+
+/* カードの中身 */
+.card-body {
+  padding: 20px;
+}
+
+.data-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 0.9em;
+  border-bottom: 1px dotted #eee;
+  padding-bottom: 5px;
+}
+
+.label {
+  color: #888;
+  font-size: 0.85em;
+}
+
+.value {
+  font-weight: bold;
+  text-align: right;
+}
+
+/* 詳細エリア */
+.details {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-top: 1px solid #eee;
+  font-size: 0.9em;
+  /* Reactの条件付きレンダリングを使うため display: none は削除し、
+     アニメーションのみ定義します */
+  animation: fadeIn 0.5s;
+}
+
+.trivia-box {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #fff8e1;
+  border-left: 4px solid #ffc107;
+  border-radius: 4px;
+  font-size: 0.85em;
+  line-height: 1.4;
+}
+
+/* ボタン */
+.toggle-btn {
+  width: 100%;
+  padding: 10px;
+  background: none;
+  border: none;
+  border-top: 1px solid #eee;
+  color: #38003c;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.toggle-btn:hover {
+  background-color: #f0f0f0;
+}
+
+/* アニメーション */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* フッターの戻るボタン */
+.footer-nav {
+  text-align: center;
+  margin-top: 50px;
+  padding-bottom: 30px;
+}
+
+.back-btn {
+  display: inline-block;
+  background-color: #38003c;
+  color: white;
+  padding: 12px 30px;
+  border-radius: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.back-btn:hover {
+  background-color: #00ff85;
+  color: #38003c;
+}

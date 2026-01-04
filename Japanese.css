@@ -1,0 +1,137 @@
+/* JapanesePlayers.css */
+
+/* ページ全体のラッパー（スタイルの競合を防ぐため） */
+.jp-page {
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  background-color: #f0f2f5;
+  color: #333;
+  min-height: 100vh;
+  padding-bottom: 40px;
+}
+
+/* ナビゲーション（上部） */
+.jp-nav-header {
+  background-color: #38003c;
+  padding: 10px 20px;
+}
+
+.jp-nav-link {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* メインコンテナ */
+.jp-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* タイトルエリア */
+.jp-title {
+  text-align: center;
+  color: #0055ff; /* サムライブルー */
+  margin-bottom: 20px;
+  font-size: 2.5em;
+}
+
+.jp-subtitle {
+  text-align: center;
+  margin-bottom: 40px;
+  color: #555;
+  font-size: 1.1em;
+}
+
+/* グリッドレイアウト */
+.jp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+/* 選手カード */
+.jp-card {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  border-top: 5px solid #0055ff; /* 青いライン */
+  display: flex;
+  flex-direction: column;
+}
+
+.jp-card:hover {
+  transform: translateY(-5px);
+}
+
+/* 写真エリア（アイコン表示） */
+.jp-card-photo {
+  height: 200px;
+  background-color: #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4em;
+  color: #888;
+}
+
+/* 情報エリア */
+.jp-card-info {
+  padding: 20px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.jp-name {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 0 0 5px 0;
+  color: #38003c;
+}
+
+.jp-team {
+  color: #0055ff;
+  font-weight: bold;
+  display: block;
+}
+
+.jp-season {
+  font-size: 0.85em;
+  color: #888;
+  margin-bottom: 15px;
+  display: block;
+}
+
+.jp-desc {
+  font-size: 0.95em;
+  line-height: 1.6;
+  color: #444;
+  margin: 0;
+}
+
+/* フッターの戻るボタン */
+.jp-footer-nav {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.jp-back-btn {
+  display: inline-block;
+  background-color: #38003c;
+  color: white;
+  padding: 12px 30px;
+  border-radius: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.jp-back-btn:hover {
+  background-color: #00ff85;
+  color: #38003c;
+}
