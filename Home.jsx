@@ -59,7 +59,7 @@ const Home = () => {
             <div className="card-content">
               <div className="card-title">Stats & Records</div>
               <div className="card-desc">
-                歴代最多得点、アシスト記録、クリーンシートなどのスタッツ集。
+              現在の順位表と得点ランキングの情報。
               </div>
             </div>
           </Link>
