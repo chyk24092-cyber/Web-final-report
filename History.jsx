@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './History.css'; 
 
-// データセット
+// ここで25年分のデータを書く
 const historyData = [
   {
       season: "2000-01",
@@ -104,7 +104,7 @@ const historyData = [
       trivia: "アンチェロッティ率いるチェルシーがリーグ総得点103を記録して優勝。"
   },
   {
-    season: "2010-11", // ※注: 元データで抜けていた部分ですが、補完する場合はここに入れます
+    season: "2010-11", 
     champion: "Man Utd",
     mvp: "Nemanja Vidić (MUN)",
     topScorer: "Berbatov / Tevez (20)",
@@ -255,7 +255,7 @@ const historyData = [
   }
 ];
 
-// 個別のシーズンカードコンポーネント
+// SeasonCard関数。得点王などカードの基本部分
 const SeasonCard = ({ data }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -284,11 +284,12 @@ const SeasonCard = ({ data }) => {
         </div>
       </div>
 
+      {/* 詳細を開け閉めするボタン */}
       <button className="toggle-btn" onClick={() => setIsOpen(!isOpen)}>
         {isOpen ? "▲ 閉じる" : "▼ 詳細・トリビアを見る"}
       </button>
 
-      {/* 詳細エリア (条件付きレンダリング) */}
+      {/* 詳細の部分 */}
       {isOpen && (
         <div className="details">
           <div className="data-row">
@@ -300,7 +301,7 @@ const SeasonCard = ({ data }) => {
 
           {data.trivia && (
             <div className="trivia-box">
-              <strong>💡 その年のハイライト:</strong><br />
+              <strong>💡 ハイライト:</strong><br />
               {data.trivia}
             </div>
           )}
@@ -310,7 +311,7 @@ const SeasonCard = ({ data }) => {
   );
 };
 
-// メインページコンポーネント
+// History関数
 const History = () => {
   return (
     <div className="history-page">
@@ -320,17 +321,17 @@ const History = () => {
           &larr; Back to Home
         </a>
       </div>
-
+      {/* このページのタイトル */}
       <h1 className="history-title">Premier League History (2000-2025)</h1>
-      <p className="intro">プレミアリーグ過去25年間の記録と記憶</p>
-
+      <p className="intro">プレミアリーグ過去25年間の記録</p>
+      {/* forで繰り返しカードを作っている感じ */}
       <div className="archive-container">
         {historyData.map((seasonData, index) => (
           <SeasonCard key={index} data={seasonData} />
         ))}
       </div>
 
-      {/* 戻るボタン（フッター） */}
+      {/* 戻るボタン*/}
       <div className="footer-nav">
         <a href="/" className="back-btn">
           &larr; Back to Home

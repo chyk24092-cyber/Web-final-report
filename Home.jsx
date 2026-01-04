@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Home.css';
 
+// c言語でいう関数に似ている。App.jsxがmain関数
 const Home = () => {
   return (
     <div className="home-container">
@@ -30,29 +31,29 @@ const Home = () => {
         <h2 className="main-heading">Menu</h2>
         
         <div className="grid">
-          {/* History Page */}
+          {/* プレミアの歴史 */}
           <Link to="/history" className="card">
             <div className="card-img bg-history">📜</div>
             <div className="card-content">
               <div className="card-title">History Archive</div>
               <div className="card-desc">
-                2000年から現在までのプレミアリーグの順位、得点王、MVPなどの詳細データ。
+                2000年から現在までのプレミアリーグの優勝チーム、得点王、MVPなどの詳細データ。
               </div>
             </div>
           </Link>
 
-          {/* Japanese Players Page */}
+          {/* 日本人ページ */}
           <Link to="/japanese" className="card">
             <div className="card-img bg-japanese">🇯🇵</div>
             <div className="card-content">
               <div className="card-title">Japanese Players</div>
               <div className="card-desc">
-                三苫薫、遠藤航などプレミアリーグで活躍する日本人選手たちの紹介。
+              プレミアリーグで活躍する日本人選手たちの紹介。
               </div>
             </div>
           </Link>
 
-          {/* Stats Page (リンク有効化) */}
+          {/* スタッツ表 */}
           <Link to="/stats" className="card">
             <div className="card-img bg-stats">📊</div>
             <div className="card-content">
@@ -63,36 +64,32 @@ const Home = () => {
             </div>
           </Link>
 
-          {/* Teams Page (リンク有効化) */}
+          {/* クラブの説明 */}
           <Link to="/teams" className="card">
             <div className="card-img bg-teams">🏟️</div>
             <div className="card-content">
               <div className="card-title">Club Profiles</div>
               <div className="card-desc">
-                ビッグ6を中心とした各クラブの歴史と本拠地スタジアム情報。
+                ビッグ6を中心とした各クラブの情報。
               </div>
             </div>
           </Link>
 
-          {/* ★追加: Weather Page (同じデザインルールで追加) */}
+          {/* 外のスポーツなので天気 */}
           <Link to="/weather" className="card">
             <div className="card-img bg-weather">🌤️</div>
             <div className="card-content">
               <div className="card-title">Local Weather</div>
               <div className="card-desc">
-                主な州のリアルタイム天気予報。
+                イングランドの主な都市のリアルタイム天気。
               </div>
             </div>
           </Link>
         </div>
-      </div>
-
-      {/* フッター */}
-      <footer className="home-footer">
-        &copy; 2025 Premier League Fan Portal. All rights reserved.
-      </footer>
+      </div> 
     </div>
   );
 };
 
+// 他のファイルでも使えるように
 export default Home;

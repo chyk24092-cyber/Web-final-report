@@ -2,8 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Teams.css';
 
+
+// Team関数を作成。かつ、initialTeamsDa配列を作って
+// 各チームの情報を書き込む。その際番号を振り分ける
+//グッドとバッドを作って状態とイベントハンドリングを満たす
 const Teams = () => {
-  // ▼ 修正1: 変数名を initialTeamsData に統一し、初期値(0)を追加しました
+  
   const initialTeamsData = [
     {
       id: 1,
@@ -247,24 +251,26 @@ const Teams = () => {
     },
   ];
 
-  // ▼▼▼ データの読み込み ▼▼▼
-  // useStateの初期値として、「保存されたデータ」があればそれを使い、なければ「初期値」を使います。
+
+  // c言語でいう動的メモリに近い
+  // useStateを使うことで「保存されたデータ」があればそれを使い、なければ「初期値」を使います。
   const [teams, setTeams] = useState(() => {
     const savedData = localStorage.getItem("premierLeagueVotes");
     if (savedData) {
       return JSON.parse(savedData);
     } else {
-      return initialTeamsData; // これで名前が一致しました！
+      return initialTeamsData;
     }
   });
 
-  // ▼▼▼ データの保存 (useEffect) ▼▼▼
+  // データが変更(good or badが押されたら)
+  //  useStateを変更し保存
   useEffect(() => {
     localStorage.setItem("premierLeagueVotes", JSON.stringify(teams));
   }, [teams]);
 
 
-  // ▼▼▼ イベントハンドリング ▼▼▼
+  //　goodとbadが押されたら数字を変える処理
   const handleLike = (id) => {
     const newTeams = teams.map((team) => {
       if (team.id === id) return { ...team, likes: (team.likes || 0) + 1 };
@@ -281,6 +287,7 @@ const Teams = () => {
     setTeams(newTeams);
   };
 
+  // 戻るボタン
   return (
     <div className="teams-page">
       <div className="teams-nav-header">
@@ -289,13 +296,14 @@ const Teams = () => {
         </Link>
       </div>
 
+      {/* このページのタイトル */}
       <div className="teams-container">
         <div className="teams-content">
           <h1>🏟️ Premier League 2025-26 Clubs</h1>
 
           <div className="teams-grid">
               
-              {/* ▼ 修正2: teamsData.map ではなく、状態変数 teams.map を使います */}
+              {/* カードのスタジアム等の文字*/}
               {teams.map((team) => (
                 <div className="team-card" key={team.id} style={{ borderTopColor: team.color }}>
                     <div className="team-header">
@@ -321,7 +329,7 @@ const Teams = () => {
                         {team.desc}
                     </div>
 
-                    {/* ▼▼▼ 修正3: 消えていた投票ボタンを復活させました！ ▼▼▼ */}
+                    {/* 投票ボタン(goodとbad) */}
                     <div className="vote-area" style={{ 
                         borderTop: '1px solid #eee', 
                         paddingTop: '10px', 
@@ -360,13 +368,12 @@ const Teams = () => {
                             👎 Bad {team.dislikes}
                         </button>
                     </div>
-                    {/* ▲▲▲▲▲▲ */}
-
                 </div>
               ))}
 
           </div>
-
+        
+        {/* 戻るボタン */}
         <div style={{ textAlign: 'center', marginTop: '40px', marginBottom: '20px' }}>
           <Link to="/" style={{ display: 'inline-block', padding: '10px 20px', backgroundColor: '#38003c', color: 'white', textDecoration: 'none', borderRadius: '20px', fontWeight: 'bold' }}>
             &larr; Back to Home
@@ -376,11 +383,9 @@ const Teams = () => {
         </div>
       </div>
 
-      <footer>
-        &copy; 2025 Premier League Report Project. All rights reserved.
-      </footer>
     </div>
   );
 };
 
+//ほかのファイルでも使えるように
 export default Teams;

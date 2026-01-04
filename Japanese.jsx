@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Japanese.css';
 
+// 各日本人の情報(配列で作っている)
 const playersData = [
   {
     name: "Kaoru Mitoma",
@@ -39,7 +40,7 @@ const playersData = [
     desc: "192cmの圧倒的な高さと、足元の技術を兼ね備えた現代型CB。その才能は日本のみならず世界からも注目され、弱冠20歳にしてビッグクラブ・トッテナムへの移籍を果たした。"
   }
 ];
-
+// PlayerCard関数。カードに書く名前等を作成
 const PlayerCard = ({ player }) => {
   return (
     <div className="jp-card">
@@ -58,28 +59,32 @@ const PlayerCard = ({ player }) => {
   );
 };
 
+// japanese関数。
 const Japanese = () => {
   return (
     <div className="jp-page">
       <div className="jp-nav-header">
-        {/* React RouterのLinkに変更 */}
+        {/* React RouterのLinkに変更 戻るボタン*/}
         <Link to="/" className="jp-nav-link">
           &larr; Back to Home
         </Link>
       </div>
 
+      {/* このページのタイトル */}
       <div className="jp-container">
         <h1 className="jp-title">Japanese Players</h1>
         <p className="jp-subtitle">
           プレミアリーグで戦う日本人選手たち。
         </p>
 
+        {/* データのマッピング(forで三苫...遠藤の順に書いてる) */}
         <div className="jp-grid">
           {playersData.map((player, index) => (
             <PlayerCard key={index} player={player} />
           ))}
         </div>
 
+        {/* 戻るボタン */}
         <div className="jp-footer-nav">
           <Link to="/" className="jp-back-btn">
             &larr; Back to Home
@@ -90,4 +95,5 @@ const Japanese = () => {
   );
 };
 
+//ほかのファイルでも使えるように
 export default Japanese;

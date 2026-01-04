@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-// ▼ 天気カード部品
+//天気カードの部品作り(APIを使った非同期データ取得。)
+//今回の場合、現地の天気
 const WeatherCard = ({ name, lat, lon }) => {
   const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -33,6 +34,7 @@ const WeatherCard = ({ name, lat, lon }) => {
     return "☁️";
   };
 
+  // 実際の画面の描画
   return (
     <div style={{ 
       background: 'white', 
@@ -68,7 +70,7 @@ const WeatherCard = ({ name, lat, lon }) => {
   );
 };
 
-// ▼ ページ本体
+// weather関数(カードの詳細)
 const Weather = () => {
   return (
     <div style={{ 
@@ -78,13 +80,15 @@ const Weather = () => {
       textAlign: 'center',
       fontFamily: 'Arial, sans-serif'
     }}>
+
+      {/* このページのタイトル */}
       <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
         <h1 style={{ color: '#006064', marginBottom: '10px', fontSize: '2.5rem' }}>🌤️ Local Weather Info</h1>
         <p style={{ color: '#00838f', marginBottom: '40px', fontSize: '1.2rem' }}>
-          Current weather in key Premier League locations.
+        プレミアリーグの主な都市の現在の天気
         </p>
 
-        {/* 3つのカードを並べるエリア */}
+        {/* 3つのカードを並べる */}
         <div style={{ 
           display: 'flex', 
           justifyContent: 'center', 
@@ -97,7 +101,7 @@ const Weather = () => {
           <WeatherCard name="🌊 Merseyside" lat={53.4084} lon={-2.9916} />
         </div>
 
-        {/* Homeに戻るボタン */}
+        {/* 戻るボタン */}
         <Link to="/" style={{ 
           display: 'inline-block', 
           padding: '12px 30px', 
@@ -115,4 +119,5 @@ const Weather = () => {
   );
 };
 
+//ほかのファイルでも使えるように
 export default Weather;

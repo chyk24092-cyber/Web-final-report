@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'; // ルーティングを使用する場
 import './Stats.css'; // 作成したCSSをインポート
 
 const Stats = () => {
-  // 1. 順位表のデータ
+  //  順位表のデータ
   const standingsData = [
     { pos: 1, club: 'Arsenal', pl: 19, gd: 25, pts: 45, status: 'rank-cl' },
     { pos: 2, club: 'Man City', pl: 19, gd: 26, pts: 41, status: 'rank-cl' },
@@ -28,29 +28,31 @@ const Stats = () => {
   ];
 
   // 2. 得点ランキングのデータ
-  // barWidthは1位のゴール数を100%としたときの割合で計算しても良いですが、今回は手動設定値を保持します
+  // barWidthは1位のゴール数を100%としたときの割合で計算
   const topScorersData = [
     { rank: 1, name: 'Erling Haaland', team: 'Man City', goals: 19, barWidth: '100%' },
     { rank: 2, name: 'Igor Thiago', team: 'Brentford', goals: 11, barWidth: '70%' },
     { rank: 3, name: 'Antoine Semenyo', team: 'Bournemouth', goals: 9, barWidth: '60%' },
+    { rank: 4, name: 'Philippe Mateta', team: 'Crystal Palace', goals: 8, barWidth: '55%' },
     { rank: 4, name: 'Danny Welbeck', team: 'Brighton', goals: 8, barWidth: '55%' },
     { rank: 4, name: 'Dominic Calvert-Lewin', team: 'Leeds United', goals: 8, barWidth: '55%' },
   ];
 
   return (
     <div>
-      {/* 戻るボタンエリア */}
+      {/* 戻るボタン */}
       <div className="back-nav">
-        {/* React Routerを使っている場合は Link を推奨。使っていない場合は通常の a タグでOK */}
+        {/* React Routerを使っている場合は Link を推奨。*/}
         <Link to="/" className="back-link">
           &larr; Back to Home
         </Link>
       </div>
 
+      {/* このページのタイトル */}
       <div className="stats-container">
         <h1 className="stats-header">Season Stats</h1>
 
-        {/* --- 順位表セクション --- */}
+        {/* --- 順位表--- */}
         <div className="stats-box">
           <h2 className="section-title">Standings table</h2>
           <table className="standings-table">
@@ -64,7 +66,7 @@ const Stats = () => {
               </tr>
             </thead>
             <tbody>
-              {/* ここでデータをループ処理 (map) */}
+              {/* ここでデータをループ処理 (forで繰り返し20クラブしている。これがマッピング) */}
               {standingsData.map((team) => (
                 <tr key={team.club} className={team.status}>
                   <td>{team.pos}</td>
@@ -83,11 +85,11 @@ const Stats = () => {
           </p>
         </div>
 
-        {/* --- 得点ランキングセクション --- */}
+        {/* --- 得点ランキング --- */}
         <div className="stats-box">
           <h2 className="section-title">Top Scorers</h2>
           
-          {/* ここでデータをループ処理 (map) */}
+          {/* ここでデータをループ処理 (forで繰り返し行っている) */}
           {topScorersData.map((player, index) => (
             <div className="scorer-item" key={index}>
               <div className="scorer-rank">{player.rank}</div>
@@ -107,6 +109,7 @@ const Stats = () => {
 
         </div>
         
+        {/* 戻るボタン */}
         <div style={{ textAlign: 'center', marginTop: '40px', marginBottom: '20px' }}>
           <Link to="/" style={{ display: 'inline-block', padding: '10px 20px', backgroundColor: '#38003c', color: 'white', textDecoration: 'none', borderRadius: '20px', fontWeight: 'bold' }}>
             &larr; Back to Home
@@ -118,4 +121,5 @@ const Stats = () => {
   );
 };
 
+//ほかのファイルでも使えるように
 export default Stats;
