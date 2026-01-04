@@ -7,13 +7,14 @@ const Home = () => {
     <div className="home-container">
       {/* ヘッダー(ここで各ページを紐づけている。) */}
       <header className="home-header">
-        <div className="logo">Introduction to PL</div>
+        <div className="logo">IntroductionPL</div>
         <nav className="nav-links">
           <Link to="/">Home</Link>
           <Link to="/history">History</Link>
           <Link to="/japanese">Japanese</Link>
           <Link to="/teams">Teams</Link>
           <Link to="/stats">Stats</Link>
+          <Link to="/weather">Weather</Link>
         </nav>
       </header>
 
@@ -69,6 +70,17 @@ const Home = () => {
               <div className="card-title">Club Profiles</div>
               <div className="card-desc">
                 ビッグ6を中心とした各クラブの歴史と本拠地スタジアム情報。
+              </div>
+            </div>
+          </Link>
+
+          {/* ★追加: Weather Page (同じデザインルールで追加) */}
+          <Link to="/weather" className="card">
+            <div className="card-img bg-weather">🌤️</div>
+            <div className="card-content">
+              <div className="card-title">Local Weather</div>
+              <div className="card-desc">
+                主な州のリアルタイム天気予報。
               </div>
             </div>
           </Link>

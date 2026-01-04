@@ -1,0 +1,100 @@
+/* 全体のコンテナ */
+.home-container {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #f8f9fa; /* 薄いグレーの背景 */
+  min-height: 100vh;
+  font-family: 'Arial', sans-serif;
+  color: #38003c; /* プレミアリーグの濃い紫 */
+}
+
+/* ヒーローセクション（タイトル周り） */
+.hero-section {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 3.5rem;
+  font-weight: 900;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  color: #38003c;
+  letter-spacing: -1px;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 40px;
+}
+
+/* --- ここから下がボタンのデザイン修正です --- */
+
+.nav-links {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap; /* スマホで折り返す */
+  margin-top: 40px;
+}
+
+/* ボタン共通デザイン */
+.nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px 30px;
+  border-radius: 50px; /* 丸っこくする */
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  color: white !important; /* 文字色を強制的に白にする */
+}
+
+/* ホバー時の動き */
+.nav-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+/* 各ボタンの色設定 */
+/* TEAMSボタン（青紫系） */
+.teams-btn {
+  background: linear-gradient(135deg, #38003c 0%, #6f0078 100%);
+}
+
+/* HISTORYボタン（緑系） */
+.history-btn {
+  background: linear-gradient(135deg, #00ff85 0%, #00bc62 100%);
+  color: #38003c !important; /* 緑背景なので文字は濃い色にする */
+}
+
+/* REPORTボタン（ピンク赤系） */
+.jp-btn {
+  background: linear-gradient(135deg, #ff2882 0%, #d4005c 100%);
+}
+
+.btn-icon {
+  font-size: 1.4rem;
+}
+
+/* スマホ対応 */
+@media (max-width: 600px) {
+  .title {
+    font-size: 2.5rem;
+  }
+  
+  .nav-links {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .weather-container {
+    flex-direction: column; /* スマホでは天気を縦に並べる */
+    align-items: center;
+  }
+}

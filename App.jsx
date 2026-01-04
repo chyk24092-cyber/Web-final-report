@@ -1,32 +1,23 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-// 各ページコンポーネントのインポート
+// ページのインポート
 import Home from './Home';
-import History from './History';
-import Japanese from './Japanese'; // JapanesePlayersから変更
-import Teams from './Teams';       // お手元のTeams.jsxを想定
-import Stats from './Stats';       // お手元のStats.jsxを想定
+import Teams from './Teams';
+// ...HistoryやJapaneseなど他のインポートがあるはずです...
+import Weather from './Weather'; // ★これを追加！
 
 function App() {
   return (
     <Router>
-      <Routes>
-        {/* トップページ */}
-        <Route path="/" element={<Home />} />
-        
-        {/* ヒストリーアーカイブ */}
-        <Route path="/history" element={<History />} />
-        
-        {/* 日本人選手紹介 */}
-        <Route path="/japanese" element={<Japanese />} />
-        
-        {/* チーム紹介 */}
-        <Route path="/teams" element={<Teams />} />
-        
-        {/* スタッツ記録 */}
-        <Route path="/stats" element={<Stats />} />
-      </Routes>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/teams" element={<Teams />} />
+          {/* ...他のルート... */}
+          <Route path="/weather" element={<Weather />} /> {/* ★これを追加！ */}
+        </Routes>
+      </div>
     </Router>
   );
 }
