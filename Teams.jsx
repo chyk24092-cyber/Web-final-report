@@ -171,9 +171,9 @@ const Teams = () => {
       icon: "😈",
       color: "#DA291C",
       stadium: "Old Trafford",
-      manager: "Ruben Amorim",
+      manager: "Darren Fletcher暫定監督 (Ruben Amorim解任)",
       keyPlayer: "Bryan Mbeumo",
-      desc: "昔の優勝筆頭候補と言えばこのチーム。アモリム監督就任2年目となり、3-4-3システムが選手にある程度定着。若手の爆発力と組織的なプレスが噛み合い、赤い悪魔が本来の強さを取り戻しつつある。",
+      desc: "昔の優勝筆頭候補と言えばこのチーム。アモリム監督就任2年目となり、3-4-3システムが選手にある程度定着。と思いきや1/5にまさかの解任。チームはバタバタしているが、赤い悪魔の強さはいつ戻ってくるのか。",
       likes: 0,
       dislikes: 0
     },
@@ -245,7 +245,7 @@ const Teams = () => {
       stadium: "Molineux Stadium",
       manager: "Rob Edwards",
       keyPlayer: "João Gomes",
-      desc: "エースのマテウスクーニャを引き抜かれ、今季リーグ戦半分を終えていまだ未勝利。このままだと、リーグの最小勝ち点(11)を更新してしまう。",
+      desc: "エースのマテウスクーニャを引き抜かれ、今季リーグ戦半分を終えていまだ1勝のみ。このままだと、リーグの最小勝ち点(11)を更新してしまう。",
       likes: 0,
       dislikes: 0
     },

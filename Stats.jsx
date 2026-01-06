@@ -5,26 +5,26 @@ import './Stats.css'; // 作成したCSSをインポート
 const Stats = () => {
   //  順位表のデータ
   const standingsData = [
-    { pos: 1, club: 'Arsenal', pl: 19, gd: 25, pts: 45, status: 'rank-cl' },
-    { pos: 2, club: 'Man City', pl: 19, gd: 26, pts: 41, status: 'rank-cl' },
-    { pos: 3, club: 'Aston Villa', pl: 19, gd: 7, pts: 39, status: 'rank-cl' },
-    { pos: 4, club: 'Liverpool', pl: 19, gd: 4, pts: 33, status: 'rank-cl' },
-    { pos: 5, club: 'Chelsea', pl: 19, gd: 11, pts: 30, status: 'rank-el' },
-    { pos: 6, club: 'Man Utd', pl: 19, gd: 4, pts: 30, status: 'rank-normal' },
-    { pos: 7, club: 'Sunderland', pl: 19, gd: 2, pts: 29, status: 'rank-normal' },
-    { pos: 8, club: 'Everton', pl: 19, gd: 0, pts: 28, status: 'rank-normal' },
-    { pos: 9, club: 'Brentford', pl: 19, gd: 2, pts: 27, status: 'rank-normal' },
-    { pos: 10, club: 'Crystal Palace', pl: 19, gd: 1, pts: 27, status: 'rank-normal' },
-    { pos: 11, club: 'Fulham', pl: 19, gd: -1, pts: 27, status: 'rank-normal' },
-    { pos: 12, club: 'Tottenham', pl: 19, gd: 4, pts: 26, status: 'rank-normal' },
-    { pos: 13, club: 'Newcastle', pl: 19, gd: 2, pts: 26, status: 'rank-normal' },
-    { pos: 14, club: 'Brighton', pl: 19, gd: 1, pts: 25, status: 'rank-normal' },
-    { pos: 15, club: 'Bournemouth', pl: 19, gd: -6, pts: 23, status: 'rank-normal' },
-    { pos: 16, club: 'Leeds United', pl: 19, gd: -7, pts: 21, status: 'rank-normal' },
-    { pos: 17, club: "Nott'm Forest", pl: 19, gd: -12, pts: 18, status: 'rank-normal' },
-    { pos: 18, club: 'West Ham', pl: 19, gd: -17, pts: 14, status: 'rank-demote' },
-    { pos: 19, club: 'Burnley', pl: 19, gd: -17, pts: 12, status: 'rank-demote' },
-    { pos: 20, club: 'Wolves', pl: 19, gd: -29, pts: 3, status: 'rank-demote' },
+    { pos: 1, club: 'Arsenal', pl: 20, gd: 26, pts: 48, status: 'rank-cl' },
+    { pos: 2, club: 'Man City', pl: 20, gd: 26, pts: 42, status: 'rank-cl' },
+    { pos: 3, club: 'Aston Villa', pl: 20, gd: 9, pts: 42, status: 'rank-cl' },
+    { pos: 4, club: 'Liverpool', pl: 20, gd: 4, pts: 34, status: 'rank-cl' },
+    { pos: 5, club: 'Chelsea', pl: 20, gd: 11, pts: 31, status: 'rank-el' },
+    { pos: 6, club: 'Man Utd', pl: 20, gd: 4, pts: 31, status: 'rank-normal' },
+    { pos: 7, club: 'Brentford', pl: 20, gd: 4, pts: 30, status: 'rank-normal' },
+    { pos: 8, club: 'Sunderland', pl: 20, gd: 2, pts: 30, status: 'rank-normal' },
+    { pos: 9, club: 'Newcastle', pl: 20, gd: 4, pts: 29, status: 'rank-normal' },
+    { pos: 10, club: 'Brighton', pl: 20, gd: 3, pts: 28, status: 'rank-normal' },
+    { pos: 11, club: 'Fulham', pl: 20, gd: -1, pts: 28, status: 'rank-normal' },
+    { pos: 12, club: 'Everton', pl: 20, gd: -2, pts: 28, status: 'rank-normal' },
+    { pos: 13, club: 'Tottenham', pl: 20, gd: 4, pts: 27, status: 'rank-normal' },
+    { pos: 14, club: 'Crystal Palace', pl: 20, gd: -1, pts: 27, status: 'rank-normal' },
+    { pos: 15, club: 'Bournemouth', pl: 20, gd: -7, pts: 23, status: 'rank-normal' },
+    { pos: 16, club: 'Leeds United', pl: 20, gd: -7, pts: 22, status: 'rank-normal' },
+    { pos: 17, club: "Nott'm Forest", pl: 20, gd: -14, pts: 18, status: 'rank-normal' },
+    { pos: 18, club: 'West Ham', pl: 20, gd: -20, pts: 14, status: 'rank-demote' },
+    { pos: 19, club: 'Burnley', pl: 20, gd: -19, pts: 12, status: 'rank-demote' },
+    { pos: 20, club: 'Wolves', pl: 20, gd: -26, pts: 6, status: 'rank-demote' },
   ];
 
   // 2. 得点ランキングのデータ
@@ -81,7 +81,7 @@ const Stats = () => {
             </tbody>
           </table>
           <p style={{ fontSize: '0.8em', color: '#888', textAlign: 'right', marginTop: '10px' }}>
-            ※2026年1月3日18時時点のデータです。
+            ※2026年1月6日19時時点のデータです。
           </p>
         </div>
 
