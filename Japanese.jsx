@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Japanese.css';
 
-// 各日本人の情報(配列で作っている)
+// 各日本人の情報(配列で作っている。)
 const playersData = [
   {
     name: "Kaoru Mitoma",
