@@ -16,7 +16,7 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_APP_ID
 };
 
-// Firebaseに接続
+// Firebaseに接続する
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 // --- Firebaseの設定ここまで ---
