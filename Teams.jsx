@@ -2,10 +2,26 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Teams.css';
 
+// --- Firebaseの設定ここから ---
+import { initializeApp } from "firebase/app";
+import { getFirestore, collection, onSnapshot, doc, setDoc, updateDoc, getDoc } from "firebase/firestore";
 
-// Team関数を作成。かつ、initialTeamsDa配列を作って
-// 各チームの情報を書き込む。その際番号を振り分ける
-//グッドとバッドを作って状態とイベントハンドリングを満たす
+// 環境変数から読み込む
+const firebaseConfig = {
+  apiKey: import.meta.env.VITE_FB_API_KEY,
+  authDomain: import.meta.env.VITE_FB_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FB_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FB_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FB_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FB_APP_ID
+};
+
+// Firebaseに接続
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+// --- Firebaseの設定ここまで ---
+
+
 const Teams = () => {
   
   const initialTeamsData = [
@@ -40,7 +56,7 @@ const Teams = () => {
       color: "#DA291C",
       stadium: "Vitality Stadium",
       manager: "Andoni Iraola",
-      keyPlayer: "Antoine Semenyo",
+      keyPlayer: "Evanilson",
       desc: "イラオラ監督が植え付けた「超ハイプレス」は今季も健在。相手がどのチームであろうと引かずに前へ出る勇敢なスタイル。",
       likes: 0,
       dislikes: 0
@@ -87,7 +103,7 @@ const Teams = () => {
       icon: "🦁",
       color: "#034694",
       stadium: "Stamford Bridge",
-      manager: "現在不在(Enzo Marescaが解任)",
+      manager: "Liam Rosenior",
       keyPlayer: "Cole Palmer",
       desc: "膨大な補強により生まれ変わった若きタレント軍団。天才コール・パーマーを中心に、ポゼッションスタイルで上位定着を狙う。",
       likes: 0,
@@ -171,7 +187,7 @@ const Teams = () => {
       icon: "😈",
       color: "#DA291C",
       stadium: "Old Trafford",
-      manager: "Darren Fletcher暫定監督 (Ruben Amorim解任)",
+      manager: "Michael Carrick",
       keyPlayer: "Bryan Mbeumo",
       desc: "昔の優勝筆頭候補と言えばこのチーム。アモリム監督就任2年目となり、3-4-3システムが選手にある程度定着。と思いきや1/5にまさかの解任。チームはバタバタしているが、赤い悪魔の強さはいつ戻ってくるのか。",
       likes: 0,
@@ -251,40 +267,57 @@ const Teams = () => {
     },
   ];
 
+  // データ管理 初期データをセット
+  const [teams, setTeams] = useState(initialTeamsData);
 
-  // c言語でいう動的メモリに近い
-  // useStateを使うことで「保存されたデータ」があればそれを使い、なければ「初期値」を使います。
-  const [teams, setTeams] = useState(() => {
-    const savedData = localStorage.getItem("premierLeagueVotes");
-    if (savedData) {
-      return JSON.parse(savedData);
-    } else {
-      return initialTeamsData;
-    }
-  });
-
-  // データが変更(good or badが押されたら)
-  //  useStateを変更し保存
+  // Firebase監視 データベースが変わったら画面も自動更新
   useEffect(() => {
-    localStorage.setItem("premierLeagueVotes", JSON.stringify(teams));
-  }, [teams]);
+    // "votes" という名前のコレクションを監視
+    const unsubscribe = onSnapshot(collection(db, "votes"), (snapshot) => {
+      const remoteVotes = {};
+      // データを全部取り出して辞書にする
+      snapshot.docs.forEach(doc => {
+        remoteVotes[doc.id] = doc.data();
+      });
 
+      // 手元のデータ(initialTeamsData)と、ネット上の投票数(remoteVotes)を合体！
+      const mergedTeams = initialTeamsData.map(team => {
+        const teamVotes = remoteVotes[team.id];
+        return {
+          ...team,
+          likes: teamVotes ? teamVotes.likes : 0,
+          dislikes: teamVotes ? teamVotes.dislikes : 0
+        };
+      });
 
-  //　goodとbadが押されたら数字を変える処理
-  const handleLike = (id) => {
-    const newTeams = teams.map((team) => {
-      if (team.id === id) return { ...team, likes: (team.likes || 0) + 1 };
-      return team;
+      setTeams(mergedTeams);
     });
-    setTeams(newTeams);
+
+    return () => unsubscribe(); // 画面を閉じた時に監視終了
+  }, []);
+
+  // Goodボタン Firebaseに書き込み
+  const handleLike = async (id) => {
+    const docRef = doc(db, "votes", id.toString());
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      await updateDoc(docRef, { likes: docSnap.data().likes + 1 });
+    } else {
+      await setDoc(docRef, { likes: 1, dislikes: 0 });
+    }
   };
 
-  const handleDislike = (id) => {
-    const newTeams = teams.map((team) => {
-      if (team.id === id) return { ...team, dislikes: (team.dislikes || 0) + 1 };
-      return team;
-    });
-    setTeams(newTeams);
+  // Badボタン Firebaseに書き込み
+  const handleDislike = async (id) => {
+    const docRef = doc(db, "votes", id.toString());
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      await updateDoc(docRef, { dislikes: docSnap.data().dislikes + 1 });
+    } else {
+      await setDoc(docRef, { likes: 0, dislikes: 1 });
+    }
   };
 
   // 戻るボタン
@@ -387,5 +420,4 @@ const Teams = () => {
   );
 };
 
-//ほかのファイルでも使えるように
 export default Teams;

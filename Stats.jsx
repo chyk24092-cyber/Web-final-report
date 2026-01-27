@@ -5,37 +5,39 @@ import './Stats.css'; // 作成したCSSをインポート
 const Stats = () => {
   //  順位表のデータ
   const standingsData = [
-    { pos: 1, club: 'Arsenal', pl: 20, gd: 26, pts: 48, status: 'rank-cl' },
-    { pos: 2, club: 'Man City', pl: 20, gd: 26, pts: 42, status: 'rank-cl' },
-    { pos: 3, club: 'Aston Villa', pl: 20, gd: 9, pts: 42, status: 'rank-cl' },
-    { pos: 4, club: 'Liverpool', pl: 20, gd: 4, pts: 34, status: 'rank-cl' },
-    { pos: 5, club: 'Chelsea', pl: 20, gd: 11, pts: 31, status: 'rank-el' },
-    { pos: 6, club: 'Man Utd', pl: 20, gd: 4, pts: 31, status: 'rank-normal' },
-    { pos: 7, club: 'Brentford', pl: 20, gd: 4, pts: 30, status: 'rank-normal' },
-    { pos: 8, club: 'Sunderland', pl: 20, gd: 2, pts: 30, status: 'rank-normal' },
-    { pos: 9, club: 'Newcastle', pl: 20, gd: 4, pts: 29, status: 'rank-normal' },
-    { pos: 10, club: 'Brighton', pl: 20, gd: 3, pts: 28, status: 'rank-normal' },
-    { pos: 11, club: 'Fulham', pl: 20, gd: -1, pts: 28, status: 'rank-normal' },
-    { pos: 12, club: 'Everton', pl: 20, gd: -2, pts: 28, status: 'rank-normal' },
-    { pos: 13, club: 'Tottenham', pl: 20, gd: 4, pts: 27, status: 'rank-normal' },
-    { pos: 14, club: 'Crystal Palace', pl: 20, gd: -1, pts: 27, status: 'rank-normal' },
-    { pos: 15, club: 'Bournemouth', pl: 20, gd: -7, pts: 23, status: 'rank-normal' },
-    { pos: 16, club: 'Leeds United', pl: 20, gd: -7, pts: 22, status: 'rank-normal' },
-    { pos: 17, club: "Nott'm Forest", pl: 20, gd: -14, pts: 18, status: 'rank-normal' },
-    { pos: 18, club: 'West Ham', pl: 20, gd: -20, pts: 14, status: 'rank-demote' },
-    { pos: 19, club: 'Burnley', pl: 20, gd: -19, pts: 12, status: 'rank-demote' },
-    { pos: 20, club: 'Wolves', pl: 20, gd: -26, pts: 6, status: 'rank-demote' },
+    { pos: 1, club: 'Arsenal', pl: 21, gd: 26, pts: 49, status: 'rank-cl' },
+    { pos: 2, club: 'Man City', pl: 21, gd: 26, pts: 43, status: 'rank-cl' },
+    { pos: 3, club: 'Aston Villa', pl: 21, gd: 9, pts: 43, status: 'rank-cl' },
+    { pos: 4, club: 'Liverpool', pl: 21, gd: 4, pts: 35, status: 'rank-cl' },    
+    { pos: 5, club: 'Brentford', pl: 21, gd: 7, pts: 33, status: 'rank-normal' },
+    { pos: 6, club: 'Newcastle', pl: 21, gd: 5, pts: 22, status: 'rank-normal' },
+    { pos: 7, club: 'Man Utd', pl: 21, gd: 4, pts: 32, status: 'rank-normal' },
+    { pos: 8, club: 'Chelsea', pl: 21, gd: 10, pts: 31, status: 'rank-el' },
+    { pos: 9, club: 'Fulham', pl: 21, gd: 0, pts: 31, status: 'rank-normal' },
+    { pos: 10, club: 'Sunderland', pl: 21, gd: -1, pts: 30, status: 'rank-normal' },
+    { pos: 11, club: 'Brighton', pl: 21, gd: 3, pts: 29, status: 'rank-normal' },  
+    { pos: 12, club: 'Everton', pl: 21, gd: -2, pts: 29, status: 'rank-normal' },
+    { pos: 13, club: 'Crystal Palace', pl: 21, gd: -1, pts: 28, status: 'rank-normal' },
+    { pos: 14, club: 'Tottenham', pl: 21, gd: 3, pts: 27, status: 'rank-normal' },
+    { pos: 15, club: 'Bournemouth', pl: 21, gd: -6, pts: 26, status: 'rank-normal' },
+    { pos: 16, club: 'Leeds United', pl: 21, gd: -8, pts: 22, status: 'rank-normal' },
+    { pos: 17, club: "Nott'm Forest", pl: 21, gd: -13, pts: 21, status: 'rank-normal' },
+    { pos: 18, club: 'West Ham', pl: 21, gd: -21, pts: 14, status: 'rank-demote' },
+    { pos: 19, club: 'Burnley', pl: 21, gd: -19, pts: 13, status: 'rank-demote' },
+    { pos: 20, club: 'Wolves', pl: 21, gd: -26, pts: 7, status: 'rank-demote' },
   ];
 
   // 2. 得点ランキングのデータ
   // barWidthは1位のゴール数を100%としたときの割合で計算
   const topScorersData = [
-    { rank: 1, name: 'Erling Haaland', team: 'Man City', goals: 19, barWidth: '100%' },
-    { rank: 2, name: 'Igor Thiago', team: 'Brentford', goals: 11, barWidth: '70%' },
-    { rank: 3, name: 'Antoine Semenyo', team: 'Bournemouth', goals: 9, barWidth: '60%' },
-    { rank: 4, name: 'Philippe Mateta', team: 'Crystal Palace', goals: 8, barWidth: '55%' },
-    { rank: 4, name: 'Danny Welbeck', team: 'Brighton', goals: 8, barWidth: '55%' },
-    { rank: 4, name: 'Dominic Calvert-Lewin', team: 'Leeds United', goals: 8, barWidth: '55%' },
+    { rank: 1, name: 'Erling Haaland', team: 'Man City', goals: 20, barWidth: '100%' },
+    { rank: 2, name: 'Igor Thiago', team: 'Brentford', goals: 16, barWidth: '80%' },
+    { rank: 3, name: 'Antoine Semenyo', team: 'Bournemouth', goals: 10, barWidth: '60%' },
+    { rank: 4, name: 'Dominic Calvert-Lewin', team: 'Leeds United', goals: 9, barWidth: '55%' },
+    { rank: 5, name: 'Philippe Mateta', team: 'Crystal Palace', goals: 8, barWidth: '50%' },
+    { rank: 5, name: 'Danny Welbeck', team: 'Brighton', goals: 8, barWidth: '50%' },
+    { rank: 5, name: 'Bruno Guimarães', team: 'Newcastle', goals: 8, barWidth: '50%' },
+   
   ];
 
   return (
@@ -81,7 +83,7 @@ const Stats = () => {
             </tbody>
           </table>
           <p style={{ fontSize: '0.8em', color: '#888', textAlign: 'right', marginTop: '10px' }}>
-            ※2026年1月6日19時時点のデータです。
+            ※2026年1月15日時時点のデータ。
           </p>
         </div>
 
