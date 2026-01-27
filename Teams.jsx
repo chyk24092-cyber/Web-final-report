@@ -16,6 +16,10 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_APP_ID
 };
 
+
+// 確認用
+console.log("API KEY:", import.meta.env.VITE_FB_API_KEY);
+console.log("PROJECT ID:", import.meta.env.VITE_FB_PROJECT_ID);
 // Firebaseに接続する
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
